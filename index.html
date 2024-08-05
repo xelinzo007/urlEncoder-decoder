@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>URL Encoder Decoder and Parser Tool - Free Online Utility</title>
+<meta name="description" content="Use our free online URL Encoder, Decoder, and Parser tool. Easily encode or decode URLs, and parse URL components with our user-friendly interface.">
+<meta name="keywords" content="URL encoder, URL decoder, URL parser, online tool, URL utility, free URL tools, encode URL, decode URL, parse URL components">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Your Name">
+<meta property="og:title" content="URL Encoder Decoder and Parser Tool - Free Online Utility">
+<meta property="og:description" content="Use our free online URL Encoder, Decoder, and Parser tool. Easily encode or decode URLs, and parse URL components with our user-friendly interface.">
+<meta property="og:image" content="URL_TO_AN_IMAGE_THAT_REPRESENTS_THE_PAGE">
+<meta property="og:url" content="URL_OF_THE_PAGE">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="URL Tools">
+
+<style>
+body {
+    background: #f4f4f4;
+    color: #333;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: #4CAF50;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 5px solid #388E3C;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+header nav {
+    margin-top: 10px;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+textarea, input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #fff;
+    box-sizing: border-box;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #45A049;
+}
+
+footer {
+    border-top: 1px solid #ddd;
+    background: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer img {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+.results {
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+</style>
+<script>
+function encode() {
+    var obj = document.getElementById('dencoder');
+    var unencoded = obj.value;
+    obj.value = encodeURIComponent(unencoded).replace(/'/g,"%27").replace(/"/g,"%22");    
+}
+
+function decode() {
+    var obj = document.getElementById('dencoder');
+    var encoded = obj.value;
+    obj.value = decodeURIComponent(encoded.replace(/\+/g,  " "));
+}
+
+function parseURL() {
+    var url = document.getElementById('urlInput').value;
+    try {
+        var parsedURL = new URL(url);
+        document.getElementById('urlResults').innerHTML = `
+            <p><strong>Protocol:</strong> ${parsedURL.protocol}</p>
+            <p><strong>Host:</strong> ${parsedURL.host}</p>
+            <p><strong>Hostname:</strong> ${parsedURL.hostname}</p>
+            <p><strong>Port:</strong> ${parsedURL.port}</p>
+            <p><strong>Pathname:</strong> ${parsedURL.pathname}</p>
+            <p><strong>Search:</strong> ${parsedURL.search}</p>
+            <p><strong>Hash:</strong> ${parsedURL.hash}</p>
+        `;
+    } catch (e) {
+        document.getElementById('urlResults').innerHTML = `
+            <p style="color: red;">Invalid URL</p>
+        `;
+    }
+}
+</script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>URL Encoder, Decoder, and Parser Tool</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="terms.html">Terms and Conditions</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <form onsubmit="return false;">
+        <h2>URL Encoder/Decoder</h2>
+        <textarea id="dencoder" placeholder="Enter your URL-encoded or decoded text here..."></textarea>
+        <div>
+            <button onclick="decode()">Decode</button>
+            <button onclick="encode()">Encode</button>
+        </div>
+    </form>
+
+    <form onsubmit="return false;">
+        <h2>URL Parser</h2>
+        <input id="urlInput" type="text" placeholder="Enter a URL to parse..." />
+        <button onclick="parseURL()">Parse URL</button>
+        <div id="urlResults" class="results"></div>
+    </form>
+</div>
+
+<footer>
+    <p>&copy; 2024 All rights reserved.</p>
+</footer>
+
+</body>
+</html>
